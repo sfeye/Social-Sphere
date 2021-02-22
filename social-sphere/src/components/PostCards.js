@@ -4,7 +4,7 @@ import Post from './Post';
 import getPosts from '../actions/getPosts';
 
 function PostCards() {
-
+    var maxLength = 10;
     const dispatch = useDispatch();
 
     function loadPosts() {
@@ -15,22 +15,21 @@ function PostCards() {
         loadPosts();
     }, []);
 
-    function createData(media, user, link, caption, taggedUser, dateTime, location, groups) {
-        return {media, user, link, caption, taggedUser, dateTime, location, groups};
+    function createData(media, user, caption, taggedUser, dateTime, groups) {
+        return {media, user, caption, taggedUser, dateTime, groups};
       }
 
     function createPosts(posts) {
         var tempRows = [];
+        var length = posts.length < maxLength ? posts.length : 10;
         if(success) {
-            for(var i = 0; i < posts.length; i++) {
+            for(var i = length - 1; i >= 0; i--) {
                 tempRows.push(createData(
                     posts[i].media,
                     posts[i].user.username,
-                    posts[i].link,
                     posts[i].caption,
                     posts[i].taggedUsers[0].username,
                     posts[i].dateTime,
-                    posts[i].location,
                     posts[i].groups[0].name
                 ));
             }
@@ -53,7 +52,6 @@ function PostCards() {
     if(success){
 
         var tempRows = createPosts(posts);
-
         const listItems = tempRows.map((tempRows, i) => (
             <Post 
                 key={i} 
@@ -61,14 +59,17 @@ function PostCards() {
                 user={tempRows.user}
                 date={tempRows.dateTime}
                 media={tempRows.media}
-                link={tempRows.link}
                 />
         ));
 
         return (
-            <ul>
-                {listItems}
-            </ul>
+            <div className='cards__container'>
+                <div className='cards__wrapper'>
+                    <ul className='cards__items'>
+                        {listItems}
+                    </ul>
+                </div>
+            </div>
         );
     }
     return (

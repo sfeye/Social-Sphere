@@ -9,3 +9,11 @@
     color: white;
     padding-top: 20px;
   }
+
+  .feed {
+    font-family: 'Special Elite', cursive;
+    border-bottom: dotted;
+    border-color: white;
+    border-width: 10px;
+    width: 40%;
+  }

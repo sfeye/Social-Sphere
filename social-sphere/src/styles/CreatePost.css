@@ -10,12 +10,13 @@
 
 .create-post{
     color: white;
-    font-size: 30px;
+    font-size: 50px;
     padding-top: 10px;
     padding-bottom: 10px;
     border-style: solid;
     border-color: white;
     min-width: 75%;
+    font-family: 'Special Elite', cursive;
 }
 
 .icons{

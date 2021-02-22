@@ -12,7 +12,7 @@ function Home() {
         <CreatePost/>
         <SearchBar/>
         <div className="header">
-            Feed
+            <p className="feed">Feed</p>
           <PostCards/>
         </div>
       </div>
