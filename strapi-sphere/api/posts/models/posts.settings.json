@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "name": "Posts"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "caption": {
+      "type": "richtext"
+    },
+    "media": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "dateTime": {
+      "type": "datetime"
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "groups": {
+      "collection": "group",
+      "via": "posts",
+      "dominant": true
+    },
+    "taggedUsers": {
+      "plugin": "users-permissions",
+      "collection": "user"
+    },
+    "link": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    }
+  }
+}
