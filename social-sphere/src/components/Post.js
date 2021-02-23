@@ -11,7 +11,7 @@ function Post(props) {
             <img
               className='cards__item__img'
               onClick={props.onClick}
-              src={props.media[0].url}
+              src={props.media[0] ? props.media[0].url : "default.jpeg"}
             />
           </figure>
           <div className='cards__item__info'>

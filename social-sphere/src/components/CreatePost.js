@@ -3,6 +3,7 @@ import '../styles/CreatePost.css'
 import { FaCamera, FaTags } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
 import postPosts from '../actions/postPost';
+import uploadMedia from '../actions/uploadMedia';
 import { useSelector, useDispatch } from "react-redux";
 
 function CreatePost() {
@@ -31,7 +32,8 @@ function CreatePost() {
     const handleTagClick = () => setTagClick(!tagClick);
 
     const handleSubmit = () => {
-        dispatcher(postPosts(caption, image.preview, user, "", taggedUser))
+        dispatcher(postPosts(caption, user, "", taggedUser));
+        dispatcher(uploadMedia(image.raw, "33"));
     }
 
     return (
@@ -58,7 +60,7 @@ function CreatePost() {
                         <input
                             id="file input"
                             style={{display:'none'}}
-                            type={"file"}
+                            type="file"
                             onChange={handleFileChange}
                         />
                         <label htmlFor="tag input" onClick={handleTagClick} ><FaTags style={{ cursor: 'pointer'}}/></label>

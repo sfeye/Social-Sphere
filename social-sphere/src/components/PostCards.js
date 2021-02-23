@@ -15,8 +15,8 @@ function PostCards() {
         loadPosts();
     }, []);
 
-    function createData(media, user, caption, taggedUser, dateTime, groups) {
-        return {media, user, caption, taggedUser, dateTime, groups};
+    function createData(media, user, caption, dateTime) {
+        return {media, user, caption, dateTime};
       }
 
     function createPosts(posts) {
@@ -28,9 +28,7 @@ function PostCards() {
                     posts[i].media,
                     posts[i].user.username,
                     posts[i].caption,
-                    posts[i].taggedUsers[0].username,
-                    posts[i].dateTime,
-                    posts[i].groups[0].name
+                    posts[i].dateTime
                 ));
             }
             return tempRows;

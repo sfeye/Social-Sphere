@@ -1,7 +1,7 @@
 import types from "../constants/action-types";
 
 const initialState = {
-  response: [],
+  postId: [],
   success: false,
   loading: false,
   error: null
@@ -21,7 +21,8 @@ function postsReducer(state = initialState, action) {
         ...state,
         loading: false,
         success: true,
-        response: action.payload.response
+        postId: action.payload.response
+
       };
 
     case types.POST_POSTS_FAILURE:
