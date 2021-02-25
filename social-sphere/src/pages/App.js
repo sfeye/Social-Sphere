@@ -42,6 +42,7 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
+  const [openPost, setOpenPost] = useState(false);
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -111,6 +112,8 @@ function App() {
 
   return (
     <div className="app">
+
+      
       <Modal
         open={open}
         onClose={() => setOpen(false)}
@@ -165,12 +168,25 @@ function App() {
         </div>
       </Modal>
 
+      <Modal
+        open={openPost}
+        onClose={() => setOpenPost(false)}
+      >
+        <div className="app__signup">
+          <h3> Login </h3>
+          {user?.displayName ? (
+            <ImageUpload username={user.displayName}/>
+          ) : (<div>Please login to upload a post...</div>)}
+        </div>
+      </Modal>
+
       {/* {Header} */}
       <div className="app__header">
         <h1 className="app__header-h1">social sphere</h1>
 
         {user ? (
           <div className="app__login-btns">
+            <Button onClick={() => setOpenPost(true)}>Post</Button>
             <Button onClick={() => auth.signOut()}>Logout</Button>
           </div>
         ) : (
@@ -181,13 +197,15 @@ function App() {
         )}
       </div>
 
-      <h1>Header</h1>
-
       <div className="app__posts">
         {user ? (
           posts.map(({id, post}) => (
             <div className="app__posts-post">
-              <Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl}/>
+              <Post key={id} 
+                    username={post.username} 
+                    caption={post.caption} 
+                    imageUrl={post.imageUrl}
+                    timestamp={post.timestamp}/>
             </div>
           ))
         ) : (
@@ -208,11 +226,6 @@ function App() {
           onFailure={() => {}}
         />
       </div>
-
-      {user?.displayName ? (
-            <ImageUpload username={user.displayName}/>
-        ) : (<div></div>)}
-        
     </div>
   );
 }
