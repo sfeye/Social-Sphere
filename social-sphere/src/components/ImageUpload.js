@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import '../styles/ImageUpload.css'
 import firebase from 'firebase';
 import { db, storage } from '../firebase';
 import {Button, Input} from '@material-ui/core';
@@ -56,7 +57,7 @@ function ImageUpload({username}) {
     }
 
     return (
-        <div>
+        <div className="image__upload">
             <progress className="image__upload-progress" value={progress} max="100"/>
             <TextareaAutosize 
                 className="image__upload-text"
@@ -64,7 +65,7 @@ function ImageUpload({username}) {
                 placeholder="Enter a caption..." 
                 value={caption}
                 onChange={event => setCaption(event.target.value)}
-            />;
+            />
             <Input 
                 className="image__upload-image"
                 type="file" 

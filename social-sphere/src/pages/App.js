@@ -6,6 +6,7 @@ import ImageUpload from '../components/ImageUpload';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import {Button, Input} from '@material-ui/core';
+import InstagramEmbed from 'react-instagram-embed';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -168,10 +169,6 @@ function App() {
       <div className="app__header">
         <h1 className="app__header-h1">social sphere</h1>
 
-        {user?.displayName ? (
-            <ImageUpload username={user.displayName}/>
-        ) : (<div></div>)}
-
         {user ? (
           <div className="app__login-btns">
             <Button onClick={() => auth.signOut()}>Logout</Button>
@@ -186,14 +183,36 @@ function App() {
 
       <h1>Header</h1>
 
-      {user ? (
-        posts.map(({id, post}) => (
-            <Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl}/>
-        ))
-      ) : (
-        <div>Please sign in</div>
-      )}
+      <div className="app__posts">
+        {user ? (
+          posts.map(({id, post}) => (
+            <div className="app__posts-post">
+              <Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl}/>
+            </div>
+          ))
+        ) : (
+          <div>Please sign in</div>
+        )}
+        <InstagramEmbed
+          className="app__posts-embed"
+          url='https://instagr.am/p/Zw9o4/'
+          clientAccessToken='123|456'
+          maxWidth={320}
+          hideCaption={false}
+          containerTagName='div'
+          protocol=''
+          injectScript
+          onLoading={() => {}}
+          onSuccess={() => {}}
+          onAfterRender={() => {}}
+          onFailure={() => {}}
+        />
+      </div>
 
+      {user?.displayName ? (
+            <ImageUpload username={user.displayName}/>
+        ) : (<div></div>)}
+        
     </div>
   );
 }

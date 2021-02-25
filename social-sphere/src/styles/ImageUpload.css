@@ -1,0 +1,29 @@
+.image__upload {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: 2px solid lightgray;
+    position: sticky;
+}
+
+.image__upload-btn {
+
+}
+
+.image__upload-text {
+
+}
+
+.image__upload-image {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image__upload-progress {
+    width: 100%;
+}
