@@ -8,7 +8,7 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 function ImageUpload({username}) {
     const [caption, setCaption] = useState('');
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState([]);
     const [url, setUrl] = useState('');
     const [progress, setProgress] = useState(0);
 

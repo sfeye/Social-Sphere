@@ -15,7 +15,7 @@
   justify-content: space-between;
   color: white;
   font-family: 'Special Elite', cursive;
-  font-size: 1.1rem;
+  font-size: 1rem;
   z-index: 1;
   top: 0;
   position: sticky;
@@ -44,4 +44,8 @@
 
 .app__icons {
   font-size: 20px;
+}
+
+.modal__input {
+  width: 100%;
 }
