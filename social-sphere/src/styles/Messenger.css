@@ -1,0 +1,23 @@
+.messenger {
+    max-width: 500px;
+    background-color: white;
+    box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
+    -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+    filter: drop-shadow(0 1px 3px white);
+    border-radius: 10px;
+    margin-bottom: 45px;
+    color: black;
+}
+
+.messenger__input {
+    padding: 20px;
+    display: flex;
+}
+
+.messenger__input-text {
+    margin-right: 20px;
+}
+
+.messenger__icon {
+    font-size: 20px;
+}
