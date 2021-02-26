@@ -1,15 +1,19 @@
 .post {
     max-width: 500px;
     background-color: white;
-    border: 1px solid lightgray;
+    box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
+    -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+    filter: drop-shadow(0 1px 3px white);
+    border-radius: 10px;
     margin-bottom: 45px;
+    color: black;
 }
 
 .post__image {
     width: 100%;
     object-fit: contain;
-    border-top: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 .post__caption {
@@ -40,4 +44,30 @@
 
 .post__timestamp {
 
+}
+
+.indiv__comment {
+    padding-left: 20px;
+}
+
+.comment__input {
+    display: flex;
+    width: 100%;
+    border-top: 1px solid lightgray;
+    margin-top: 15px
+}
+
+.comment__input-text {
+    margin-left: 20px;
+    flex: 1;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.comment__input-btn {
+    flex: 0;
+}
+
+.comment__input-icon {
+    font-size: 20px;
 }

@@ -1,9 +1,43 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import { db } from '../firebase';
+import firebase from 'firebase';
 import "../styles/Post.css";
-import Avatar from '@material-ui/core/Avatar'
-import Moment from 'moment'
+import Avatar from '@material-ui/core/Avatar';
+import Moment from 'moment';
+import {Button, Input} from '@material-ui/core';
+import {FaRegPaperPlane} from 'react-icons/fa';
 
-function Post({username, caption, imageUrl, timestamp}) {
+
+
+function Post({postId, username, caption, imageUrl, timestamp, user}) {
+    const [comment, setComment] = useState('')
+    const [comments, setComments] = useState([])
+
+    useEffect(() => {
+        let unsubscribe;
+        if(postId) {
+            unsubscribe = db.collection("posts")
+                .doc(postId)
+                .collection("comments")
+                .orderBy('timestamp', 'asc')
+                .onSnapshot((snapshot) => {
+                    setComments(snapshot.docs.map((doc) => (doc.data())))})
+        }
+        return () => {
+            unsubscribe();
+        }
+    }, [postId]);
+
+    const postComment = (e) => {
+        e.preventDefault();
+
+        db.collection("posts").doc(postId).collection("comments").add({
+            text: comment,
+            username: user.displayName,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        setComment('');
+    }
 
     return (
         <div className="post">
@@ -17,7 +51,15 @@ function Post({username, caption, imageUrl, timestamp}) {
                     />
                     <h3 className="post__username">{username}</h3>
                 </div>
-                <p className="post__timestamp">{Moment(timestamp.toDate()).format('MM/DD/YYYY')}</p>
+                <div className="post__timestamp">
+                    {timestamp?.toDate() ? (
+                        <div>
+                            {Moment(timestamp.toDate()).format('LL')}
+                        <br/>
+                            {Moment(timestamp.toDate()).format('h:mm a')}
+                        </div>
+                    ) : ( <div></div> )}
+                </div>
             </div>
 
             {/* {Image} */}
@@ -25,6 +67,32 @@ function Post({username, caption, imageUrl, timestamp}) {
 
             {/* {Username + Caption} */}
             <h4 className="post__caption"><strong>{username}</strong> {caption} </h4>
+
+            
+            <div>
+                {comments.map((comment, index) =>(
+                    <p key={index} className="indiv__comment">
+                        <strong>{comment.username}</strong> {comment.text}
+                    </p>))}
+            </div>
+
+            <form className="comment__input">
+                <Input
+                    className="comment__input-text"
+                    type="text"
+                    placeholder="Add a comment..."
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                />
+                <Button
+                    className="comment__input-btn"
+                    disabled={!comment}
+                    type="submit"
+                    onClick={postComment}
+                >
+                    <FaRegPaperPlane className="comment__input-icon"/>
+                </Button>
+            </form>
         </div>
     )
 }

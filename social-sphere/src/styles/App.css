@@ -3,16 +3,22 @@
 }
 
 .app {
-  background-color: #fafafa;
+  background-color: #282c34;
 }
 
 .app__header {
-  background-color: white;
+  background-color: #282c34;
   padding: 20px;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 2px solid white;
   object-fit: contain;
   display: flex;
   justify-content: space-between;
+  color: white;
+  font-family: 'Special Elite', cursive;
+  font-size: 1.1rem;
+  z-index: 1;
+  top: 0;
+  position: sticky;
 }
 
 .app__signup {
@@ -28,6 +34,14 @@
   padding: 20px;
 }
 
-.app__posts-embed {
-  padding: 20px;
+.app__login-btns {
+  margin-top: auto;
+  margin-bottom: auto;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.app__icons {
+  font-size: 20px;
 }

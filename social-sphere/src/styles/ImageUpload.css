@@ -1,10 +1,7 @@
 .image__upload {
     display: flex;
     flex-direction: column;
-    width: 50%;
-    margin: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    width: 90%;
     border: 2px solid lightgray;
     background-color: white;
     align-items: center;
@@ -12,16 +9,17 @@
 }
 
 .image__upload-btn {
-    width: 50%;
+    width: 80%;
 }
 
 .image__upload-text {
-    width: 80%;
+    max-width: 80%;
+    min-width: 80%;
     margin-bottom: 10px;
 }
 
 .image__upload-image {
-    width: 50%;
+    width: 60%;
 }
 
 .image__upload-progress {

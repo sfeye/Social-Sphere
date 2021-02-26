@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import {Button, Input} from '@material-ui/core';
 import InstagramEmbed from 'react-instagram-embed';
+import {FaRegEnvelope, FaPlusSquare, FaPowerOff, FaRegUserCircle, FaCalendarAlt} from 'react-icons/fa';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -43,6 +44,7 @@ function App() {
   const [open, setOpen] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
   const [openPost, setOpenPost] = useState(false);
+  const [openMessages, setOpenMessages] = useState(false);
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -121,6 +123,7 @@ function App() {
         <div style={modalStyle} className={classes.paper}>
           <form className='app__signup'>
           <h3> Register </h3>
+          <br/>
             <Input
               placeholder="username"
               type="text"
@@ -151,6 +154,7 @@ function App() {
         <div style={modalStyle} className={classes.paper}>
           <form className='app__signup'>
           <h3> Login </h3>
+          <br/>
             <Input
               placeholder="email"
               type="text"
@@ -172,11 +176,14 @@ function App() {
         open={openPost}
         onClose={() => setOpenPost(false)}
       >
-        <div className="app__signup">
-          <h3> Login </h3>
-          {user?.displayName ? (
-            <ImageUpload username={user.displayName}/>
-          ) : (<div>Please login to upload a post...</div>)}
+        <div style={modalStyle} className={classes.paper}>
+          <div className="app__signup">
+            <h3> Upload a post </h3>
+            <br/>
+            {user?.displayName ? (
+              <ImageUpload username={user.displayName}/>
+            ) : (<div>Please login to upload a post...</div>)}
+          </div>
         </div>
       </Modal>
 
@@ -186,8 +193,11 @@ function App() {
 
         {user ? (
           <div className="app__login-btns">
-            <Button onClick={() => setOpenPost(true)}>Post</Button>
-            <Button onClick={() => auth.signOut()}>Logout</Button>
+            <Button onClick={() => setOpenPost(true)}><FaPlusSquare className="app__icons"/></Button>
+            <Button onClick={() => setOpenMessages(true)}><FaRegEnvelope className="app__icons"/></Button>
+            <Button onClick={() => setOpenMessages(true)}><FaCalendarAlt className="app__icons"/></Button>
+            <Button onClick={() => setOpenMessages(true)}><FaRegUserCircle className="app__icons"/></Button>
+            <Button onClick={() => auth.signOut()}><FaPowerOff className="app__icons"/></Button>
           </div>
         ) : (
           <div className="app__login-btns">
@@ -202,29 +212,17 @@ function App() {
           posts.map(({id, post}) => (
             <div className="app__posts-post">
               <Post key={id} 
+                    postId={id}
                     username={post.username} 
                     caption={post.caption} 
                     imageUrl={post.imageUrl}
-                    timestamp={post.timestamp}/>
+                    timestamp={post.timestamp}
+                    user={user}/>
             </div>
           ))
         ) : (
           <div>Please sign in</div>
         )}
-        <InstagramEmbed
-          className="app__posts-embed"
-          url='https://instagr.am/p/Zw9o4/'
-          clientAccessToken='123|456'
-          maxWidth={320}
-          hideCaption={false}
-          containerTagName='div'
-          protocol=''
-          injectScript
-          onLoading={() => {}}
-          onSuccess={() => {}}
-          onAfterRender={() => {}}
-          onFailure={() => {}}
-        />
       </div>
     </div>
   );
