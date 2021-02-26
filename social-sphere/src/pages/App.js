@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { db, auth } from '../firebase';
 import '../styles/App.css';
 import Post from '../components/Post';
+import Messenger from './Messenger';
 import ImageUpload from '../components/ImageUpload';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
@@ -45,6 +46,7 @@ function App() {
   const [openSignIn, setOpenSignIn] = useState(false);
   const [openPost, setOpenPost] = useState(false);
   const [openMessages, setOpenMessages] = useState(false);
+  const [openProfile, setOpenProfile] = useState(false);
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -194,8 +196,8 @@ function App() {
         {user ? (
           <div className="app__login-btns">
             <Button onClick={() => setOpenPost(true)}><FaPlusSquare className="app__icons"/></Button>
-            <Button onClick={() => setOpenMessages(true)}><FaRegEnvelope className="app__icons"/></Button>
-            <Button onClick={() => setOpenMessages(true)}><FaRegUserCircle className="app__icons"/></Button>
+            <Button onClick={() => setOpenMessages(!openMessages)}><FaRegEnvelope className="app__icons"/></Button>
+            <Button onClick={() => setOpenProfile(true)}><FaRegUserCircle className="app__icons"/></Button>
             <Button onClick={() => auth.signOut()}><FaPowerOff className="app__icons"/></Button>
           </div>
         ) : (
@@ -207,6 +209,8 @@ function App() {
       </div>
 
       <div className="app__posts">
+        {openMessages ? (<Messenger/>) : (<></>)}
+
         {user ? (
           posts.map(({id, post}) => (
             <div className="app__posts-post">
