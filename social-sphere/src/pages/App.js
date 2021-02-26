@@ -195,7 +195,6 @@ function App() {
           <div className="app__login-btns">
             <Button onClick={() => setOpenPost(true)}><FaPlusSquare className="app__icons"/></Button>
             <Button onClick={() => setOpenMessages(true)}><FaRegEnvelope className="app__icons"/></Button>
-            <Button onClick={() => setOpenMessages(true)}><FaCalendarAlt className="app__icons"/></Button>
             <Button onClick={() => setOpenMessages(true)}><FaRegUserCircle className="app__icons"/></Button>
             <Button onClick={() => auth.signOut()}><FaPowerOff className="app__icons"/></Button>
           </div>
