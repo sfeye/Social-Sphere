@@ -63,7 +63,7 @@ function Post({postId, username, caption, imageUrl, timestamp, user}) {
             </div>
 
             {/* {Image} */}
-            <a href={imageUrl} target="_blank"><img src={imageUrl} className="post__image"></img></a>
+            <a href={imageUrl} rel="noopener noreferrer" target="_blank"><img src={imageUrl} className="post__image"></img></a>
 
             {/* {Username + Caption} */}
             <h4 className="post__caption"><strong>{username}</strong> {caption} </h4>
